@@ -100,15 +100,6 @@ I utilize the Bellman Equation as the loss function in this model.
 
 ![Bellman Equation](img/bellman-equation.png)
 
-## Requirements
-
-To run this project, you will need the following libraries:
-
-- pygame
-- pytorch
-- matplotlib
-- ipython
-
 ## Output
 
 As the AI trains, you will see it improve at playing the Snake game. You can visualize the AI's progress using matplotlib.
