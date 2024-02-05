@@ -14,6 +14,7 @@ font = pygame.font.Font('arial.ttf', 25)
 # game_iteration
 # is_collision
 
+
 class Direction(Enum):
     RIGHT = 1
     LEFT = 2
@@ -30,7 +31,7 @@ BLUE2 = (0, 100, 255)
 BLACK = (0,0,0)
 
 BLOCK_SIZE = 20
-SPEED = 10
+SPEED = 20
 
 class SnakeGameAI:
     
@@ -79,7 +80,7 @@ class SnakeGameAI:
         # 3. check if game over
         reward = 0
         game_over = False
-        if self._is_collision() or self.frame_iteration > 100*len(self.snake):
+        if self.is_collision() or self.frame_iteration > 100*len(self.snake):
             game_over = True
             reward = -10
             return reward, game_over, self.score
@@ -98,7 +99,7 @@ class SnakeGameAI:
         # 6. return game over and score
         return reward, game_over, self.score
     
-    def _is_collision(self, pt=None):
+    def is_collision(self, pt=None):
         if pt is None:
             pt = self.head
         # hits boundary
@@ -154,19 +155,3 @@ class SnakeGameAI:
             y -= BLOCK_SIZE
             
         self.head = Point(x, y)
-            
-
-if __name__ == '__main__':
-    game = SnakeGame()
-    
-    # game loop
-    while True:
-        game_over, score = game.play_step()
-        
-        if game_over == True:
-            break
-        
-    print('Final Score', score)
-        
-        
-    pygame.quit()
